@@ -22,7 +22,19 @@ export class DetailFilmComponent {
   goBack() {
     window.history.back();
   }
-
+  onDeleteMovie() {
+    if (window.confirm()) {
+      this.filmService.deleteMovieById(this.movieId).subscribe({
+        next: () => {
+          console.log('Movie deleted successfully');
+          this.goBack(); // Navigate back after deletion
+        },
+        error: (err: any) => {
+          console.error('Error deleting movie:', err);
+        }
+      });
+    }
+  }
   ngOnInit() {
     this.filmService.getMovieById(this.movieId).subscribe({
       next: (data: any) => {

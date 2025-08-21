@@ -17,9 +17,11 @@ export class MovieAddComponentComponent {
 
   constructor(private fb: FormBuilder, private filmService: FilmService, private router: Router) {
     this.movieForm = this.fb.group({
-      title: ['', Validators.required],
-      director: ['', Validators.required],
-      releaseDate: ['', Validators.required]
+      title: ['', [Validators.required, Validators.minLength(2)]],
+      director: ['', [Validators.required, Validators.minLength(2)]],
+
+      synopsis: [''],
+      year: ['', Validators.required]
     });
   }
   onSubmit() {

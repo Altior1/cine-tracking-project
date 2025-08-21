@@ -5,6 +5,7 @@
 {{ movie.year }}
 <img [src]="movie.poster" alt="{{ movie.title }} poster" (error)="onLoadingImageError($event)">
 {{ movie.synopsis }}
+<button (click)="onDeleteMovie()">delete</button>
 
 <!-- <button (click)="goBack()">Back</button> -->
 <button (click)="goBack()">retour à la liste des films</button>

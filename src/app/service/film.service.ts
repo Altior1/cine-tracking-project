@@ -36,4 +36,11 @@ export class FilmService {
       })
     );
   }
+  deleteMovieById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`).pipe(
+      tap(() => {
+        console.log(`Deleted movie with id=${id}`);
+      })
+    );
+  }
 }

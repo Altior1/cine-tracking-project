@@ -11,10 +11,16 @@
         Director is required.
     </div>
 
-    <label for="releaseDate">Release Date:</label>
-    <input id="releaseDate" formControlName="releaseDate" type="date" />
-    <div *ngIf="movieForm.get('releaseDate')?.invalid && movieForm.get('releaseDate')?.touched">
-        Release Date is required.
+    <label for="synopsis">Synopsis:</label>
+    <textarea id="synopsis" formControlName="synopsis"></textarea>
+    <div *ngIf="movieForm.get('synopsis')?.invalid && movieForm.get('synopsis')?.touched">
+        Synopsis is required.
+    </div>
+
+    <label for="year">Release Year:</label>
+    <input id="year" formControlName="year" type="month" />
+    <div *ngIf="movieForm.get('year')?.invalid && movieForm.get('year')?.touched">
+        Release Year is required.
     </div>
 
     <button type="submit" [disabled]="movieForm.invalid">Add Movie</button>
