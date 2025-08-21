@@ -12,16 +12,23 @@ import { RouterLink } from '@angular/router';
   styleUrl: './list-film.component.css'
 })
 export class ListFilmComponent {
+  public page: number; // Default to the first page
   public movies: Movie[] = [];
   constructor(private filmService: FilmService) {
-
+    this.page = 1;
   }
   onImageError(event: any) {
     const img = event.target as HTMLImageElement;
     img.src = 'image.png'; // Fallback image
   }
+  loadPrecedent() {
+
+  }
+  loadSuivant() {
+
+  }
   ngOnInit() {
-    this.filmService.getMovies(1, 10).subscribe({
+    this.filmService.getMovies(this.page, 10).subscribe({
       next: (data) => {
         this.movies = data;
       },

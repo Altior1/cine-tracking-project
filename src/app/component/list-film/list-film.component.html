@@ -3,8 +3,9 @@
     <li *ngFor="let movie of movies">
         <a [routerLink]="['/films', movie.id]">
             {{ movie.title }}
+            <img [src]="movie.poster" alt="{{ movie.title }} poster" (error)="onImageError($event)" />
         </a>
-        <img [src]="movie.poster" alt="{{ movie.title }} poster" (error)="onImageError($event)" />
-
     </li>
 </ul>
+<button (click)="loadPrecedent()">Précédent</button>
+<button (click)="loadSuivant()">Suivant</button>

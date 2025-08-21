@@ -7,15 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FilmService {
-  private totalCount: string | null = null;
+  private totalCount: string;
   private url: string = "http://localhost:3000/movies";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.totalCount = '0';
+  }
+  getTotalCount(): string | null {
+    return this.totalCount;
+  }
   getMovies(page: number, limit: number): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.url}?_page=${page}&_limit=${limit}`, { observe: "response" }).
+    return this.http.get<Movie[]>(`${this.url}?_page=${page}&_per_page=${limit}`, { observe: "response" }).
       pipe(
-        tap((res) => this.totalCount = res.headers.get("X-Total-Count")),
         map((response: any) => {
-          return response?.body.map((data: any) => {
+          return response?.body.data.map((data: any) => {
             let m: Movie = data;
             return m;
           });
