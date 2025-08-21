@@ -27,7 +27,7 @@ export class MovieAddComponentComponent {
       const movie: Movie = this.movieForm.value;
       this.filmService.addFilm(movie).subscribe({
         next: () => {
-          this.router.navigate(['/movies']);
+          this.router.navigate(['/films']);
         },
         error: (err: any) => {
           console.error('Error adding movie:', err);
