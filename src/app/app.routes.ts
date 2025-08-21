@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ListFilmComponent } from './component/list-film/list-film.component';
 import { DetailFilmComponent } from './component/detail-film/detail-film.component';
-import { MovieAddComponentComponent } from './movie-add-component/movie-add-component.component';
+import { MovieAddComponentComponent } from './component/movie-add-component/movie-add-component.component';
 
 export const routes: Routes = [
     { path: 'films', component: ListFilmComponent },

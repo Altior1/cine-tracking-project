@@ -29,4 +29,11 @@ export class FilmService {
   getMovieById(id: string): Observable<Movie> {
     return this.http.get<Movie>(`${this.url}/${id}`);
   }
+  addFilm(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(this.url, movie).pipe(
+      tap((newMovie: Movie) => {
+        console.log(`Added movie with id=${newMovie.id}`);
+      })
+    );
+  }
 }

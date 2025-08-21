@@ -1,0 +1,21 @@
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+    <label for="title">Title:</label>
+    <input id="title" formControlName="title" />
+    <div *ngIf="movieForm.get('title')?.invalid && movieForm.get('title')?.touched">
+        Title is required.
+    </div>
+
+    <label for="director">Director:</label>
+    <input id="director" formControlName="director" />
+    <div *ngIf="movieForm.get('director')?.invalid && movieForm.get('director')?.touched">
+        Director is required.
+    </div>
+
+    <label for="releaseDate">Release Date:</label>
+    <input id="releaseDate" formControlName="releaseDate" type="date" />
+    <div *ngIf="movieForm.get('releaseDate')?.invalid && movieForm.get('releaseDate')?.touched">
+        Release Date is required.
+    </div>
+
+    <button type="submit" [disabled]="movieForm.invalid">Add Movie</button>
+</form>
