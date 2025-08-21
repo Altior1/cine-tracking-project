@@ -1,4 +1,5 @@
 <h1> vos films</h1>
+<button (click)="ajouterFilm()">ajouter un film</button>
 <ul>
     <li *ngFor="let movie of movies">
         <a [routerLink]="['/films', movie.id]">

@@ -4,6 +4,7 @@ import { FilmService } from '../../service/film.service';
 import { NgFor } from '@angular/common';
 import { Movie } from '../../interface/movie';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-film',
@@ -14,7 +15,7 @@ import { RouterLink } from '@angular/router';
 export class ListFilmComponent {
   public page: number; // Default to the first page
   public movies: Movie[] = [];
-  constructor(private filmService: FilmService) {
+  constructor(private filmService: FilmService, private router: Router) {
     this.page = 1;
   }
   onImageError(event: any) {
@@ -39,5 +40,11 @@ export class ListFilmComponent {
         console.log('Movie fetching complete');
       }
     });
+  }
+  ajouterFilm() {
+    // Logic to add a film
+    console.log('Add film button clicked');
+    // Redirect to the add film page
+    this.router.navigate(['/films/add']);
   }
 }
