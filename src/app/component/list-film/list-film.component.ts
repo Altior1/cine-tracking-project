@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FilmService } from '../../service/film.service';
-import { nextTick } from 'process';
-import { error } from 'console';
+
 import { NgFor } from '@angular/common';
+import { Movie } from '../../interface/movie';
 
 @Component({
   selector: 'app-list-film',

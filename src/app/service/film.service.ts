@@ -14,8 +14,8 @@ export class FilmService {
     return this.http.get<Movie[]>(`${this.url}?_page=${page}&_limit=${limit}`, { observe: "response" }).
       pipe(
         tap((res) => this.totalCount = res.headers.get("X-Total-Count")),
-        map((response) => {
-          return response.body.map((data) => {
+        map((response: any) => {
+          return response?.body.map((data: any) => {
             let m: Movie = data;
             return m;
           });
