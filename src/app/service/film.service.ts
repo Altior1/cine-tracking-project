@@ -22,4 +22,7 @@ export class FilmService {
         })
       );
   }
+  getMovieById(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.url}/${id}`);
+  }
 }

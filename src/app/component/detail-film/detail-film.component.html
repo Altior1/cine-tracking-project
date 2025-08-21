@@ -1,1 +1,10 @@
 <p>detail-film works!</p>
+{{ movie.id}}
+{{ movie.title }}
+{{ movie.director }}
+{{ movie.year }}
+<img [src]="movie.poster" alt="{{ movie.title }} poster" (error)="onLoadingImageError($event)">
+{{ movie.synopsis }}
+
+<!-- <button (click)="goBack()">Back</button> -->
+<button (click)="goBack()">retour à la liste des films</button>
