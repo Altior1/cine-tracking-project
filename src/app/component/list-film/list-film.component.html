@@ -1,5 +1,10 @@
 <h1> vos films</h1>
 <ul>
-    <li *ngFor="let movie of movies">{{ movie.title }} {{movie.poster}}</li>
+    <li *ngFor="let movie of movies">
+        <a [routerLink]="['/films', movie.id]">
+            {{ movie.title }}
+        </a>
+        <img [src]="movie.poster" alt="{{ movie.title }} poster" (error)="onImageError($event)" />
 
+    </li>
 </ul>
