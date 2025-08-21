@@ -1,9 +1,7 @@
 <h1> vos films</h1>
 <button (click)="ajouterFilm()">ajouter un film</button>
-<form [formGroup]="filterForm" (ngChange)="onFilter()">
-    <label for="search">Rechercher le titre du film:</label>
-    <input id="search" formControlName="searchTerm" />
-
+<form [formGroup]="searchForm">
+    <input type="text" formControlName="searchTerm" placeholder="Rechercher un film..." />
 </form>
 <ul>
     <li *ngFor="let movie of movies">

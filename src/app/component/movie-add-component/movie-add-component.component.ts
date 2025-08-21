@@ -10,7 +10,8 @@ import { FilmService } from '../../service/film.service';
   selector: 'app-movie-add-component',
   imports: [NgIf, ReactiveFormsModule],
   templateUrl: './movie-add-component.component.html',
-  styleUrl: './movie-add-component.component.css'
+  styleUrl: './movie-add-component.component.css',
+  standalone: true
 })
 export class MovieAddComponentComponent {
   public movieForm: FormGroup;
