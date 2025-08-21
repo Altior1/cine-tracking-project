@@ -38,8 +38,9 @@ export class FilmService {
   }
   getFilteredMovies(filterValues: any): Observable<Movie[]> {
     console.log("Filter values:", filterValues);
-    const title = filterValues;
-    return this.http.get<Movie[]>(`${this.url}?title_like=${title}`);
+    const title = filterValues.searchTerm;
+    console.log("result", this.http.get<Movie[]>(`${this.url}?movies.title==${title}`));
+    return this.http.get<Movie[]>(`${this.url}?title=${title}`);
   }
   deleteMovieById(id: string): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`).pipe(

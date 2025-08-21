@@ -22,7 +22,7 @@ export class ListFilmComponent implements OnInit {
   public movies: Movie[] = [];
   public searchForm: FormGroup;
   public isLoading: boolean = false;
-  public searchResults$: Observable<Movie[]> = new Observable<Movie[]>();
+  public searchResults: Movie[] = [];
 
   constructor(private filmService: FilmService, private router: Router, fb: FormBuilder) {
     this.searchForm = fb.group({
@@ -35,13 +35,37 @@ export class ListFilmComponent implements OnInit {
     img.src = 'image.png'; // Fallback image
   }
   loadPrecedent() {
-
+    if (this.page > 1) {
+      this.page--;
+      this.filmService.getMovies(this.page, 10).subscribe({
+        next: (data) => {
+          this.movies = data;
+        },
+        error: (err) => {
+          console.error('Error fetching movies:', err);
+        },
+        complete: () => {
+          console.log('Movie fetching complete');
+        }
+      });
+    }
   }
   loadSuivant() {
-
+    this.page++;
+    this.filmService.getMovies(this.page, 10).subscribe({
+      next: (data) => {
+        this.movies = data;
+      },
+      error: (err) => {
+        console.error('Error fetching movies:', err);
+      },
+      complete: () => {
+        console.log('Movie fetching complete');
+      }
+    });
   }
   ngOnInit(): void {
-    this.searchResults$ = this.searchForm.valueChanges.pipe(
+    this.searchForm.valueChanges.pipe(
       tap(() => console.log('Search term changed:', this.searchForm.valueChanges)),
       // 1. Attendre 300ms après la dernière frappe
       debounceTime(300),
@@ -53,6 +77,11 @@ export class ListFilmComponent implements OnInit {
       switchMap(searchTerm => this.filmService.getFilteredMovies(searchTerm)),
       // 5. Cacher l'indicateur de chargement
       tap(() => this.isLoading = false)
+    ).subscribe(
+      (movies) => {
+        console.log('Search results:', movies),
+          this.movies = movies;
+      }
     );
     this.filmService.getMovies(this.page, 10).subscribe({
       next: (data) => {
